@@ -242,7 +242,8 @@ details p { padding: 0 1.125rem 1.125rem; color: var(--tinta-suave); }
 .cartao { position: relative; background: var(--papel); border-radius: 26px; padding: 2rem 1.25rem 1.5rem; display: grid; gap: 1.25rem; text-align: center; box-shadow: 0 40px 70px -40px rgba(80, 56, 14, 0.55); border: 1px solid var(--areia); }
 .cartao::before { content: ""; position: absolute; inset: 0.5rem; border-radius: 20px; border: 1px solid rgba(183, 132, 27, 0.35); pointer-events: none; }
 .cartao > * { position: relative; }
-.livro-palco { display: grid; place-items: center; padding-block: 0.5rem 0.75rem; perspective: 900px; }
+.livro-palco { display: grid; place-items: center; padding-block: 0.25rem 0.5rem; }
+.oferta-img { width: min(100%, 26rem); height: auto; display: block; }
 .livro {
   position: relative; width: 9.5rem; aspect-ratio: 3 / 4.2; border-radius: 4px 12px 12px 4px;
   background: linear-gradient(135deg, #3a2a18, #241a11 60%, #1b130c);
@@ -528,14 +529,8 @@ footer .marca { font-size: 1rem; color: var(--tinta); }
 <section class="secao oferta faixa" id="oferta" aria-labelledby="t-oferta">
   <div class="coluna">
     <div class="cartao">
-      <div class="livro-palco" aria-hidden="true">
-        <div class="livro">
-          <span class="a">Jesus é Pop</span>
-          <div>
-            <p class="n foil">40</p>
-            <p class="t foil">Dias de Oração pela Minha Família</p>
-          </div>
-        </div>
+      <div class="livro-palco">
+        <img class="oferta-img" src="img/oferta-livro-celular.webp" width="1017" height="996" loading="lazy" decoding="async" alt="Capa do livro 40 Dias de Oração pela Minha Família ao lado de um celular aberto no Dia 1 da área de membros.">
       </div>
       <p class="rotulo">Comece hoje</p>
       <h2 id="t-oferta">40 Dias de Oração pela Minha Família</h2>
