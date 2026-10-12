@@ -1,6 +1,10 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>40 Dias de Oração pela Minha Família</title>
 <meta name="description" content="Uma oração guiada por dia, de 10 minutos, com o nome da sua família dentro. Pelo casamento, pelos filhos e pela casa. R$29,90 com garantia de 7 dias.">
+<link rel="canonical" href="https://jesusepop.com/">
+<link rel="alternate" hreflang="pt-BR" href="https://jesusepop.com/">
+<link rel="alternate" hreflang="es" href="https://jesusepop.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://jesusepop.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
@@ -244,19 +248,6 @@ details p { padding: 0 1.125rem 1.125rem; color: var(--tinta-suave); }
 .cartao > * { position: relative; }
 .livro-palco { display: grid; place-items: center; padding-block: 0.25rem 0.5rem; }
 .oferta-img { width: min(100%, 26rem); height: auto; display: block; }
-.livro {
-  position: relative; width: 9.5rem; aspect-ratio: 3 / 4.2; border-radius: 4px 12px 12px 4px;
-  background: linear-gradient(135deg, #3a2a18, #241a11 60%, #1b130c);
-  transform: rotateY(-16deg) rotateX(4deg); transform-style: preserve-3d;
-  box-shadow: 18px 22px 30px -14px rgba(36, 26, 17, 0.6), inset 6px 0 0 rgba(255,255,255,0.06);
-  display: grid; align-content: space-between; padding: 1.1rem 0.9rem 0.9rem 1.2rem; text-align: left;
-}
-.livro::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 0.55rem; border-radius: 4px 0 0 4px; background: linear-gradient(90deg, rgba(0,0,0,0.45), rgba(255,255,255,0.08)); }
-.livro::after { content: ""; position: absolute; inset: 0.45rem 0.45rem 0.45rem 0.85rem; border: 1px solid rgba(226, 189, 106, 0.45); border-radius: 3px 8px 8px 3px; }
-.foil { background: linear-gradient(100deg, #b7841b 0%, #f3d58c 35%, #c99a35 55%, #f6e1a8 75%, #b7841b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.livro .n { font-family: var(--serif); font-size: 2.5rem; font-weight: 700; line-height: 0.9; }
-.livro .t { font-family: var(--serif); font-size: 0.875rem; font-weight: 600; line-height: 1.2; }
-.livro .a { font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #cdb48a; }
 .cartao h2 { font-size: clamp(1.5rem, 6vw, 1.875rem); }
 .preco-linha { display: grid; gap: 0.25rem; justify-items: center; }
 .preco { font-family: var(--serif); font-weight: 700; font-size: 3.5rem; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
@@ -566,6 +557,7 @@ footer .marca { font-size: 1rem; color: var(--tinta); }
   <p class="marca">Jesus <span>é</span> Pop</p>
   <p>40 Dias de Oração pela Minha Família</p>
   <p>Versículos em tradução livre, fiéis ao sentido do texto bíblico.</p>
+  <p><a href="/es/" hreflang="es" lang="es">Leer en español</a></p>
 </footer>
 
 <script>
@@ -585,6 +577,27 @@ footer .marca { font-size: 1rem; color: var(--tinta); }
   if (calmo) { for (var j = 0; j < tokens.length; j++) preenche(tokens[j]); return; }
   for (var k = 0; k < tokens.length; k++) {
     (function (el, n) { setTimeout(function () { preenche(el); }, 1200 + n * 700); })(tokens[k], k);
+  }
+})();
+</script>
+<script>
+/* Leva as UTMs da página para o checkout. Sem UTM na URL, fica o padrão da bio. */
+(function () {
+  var PADRAO = { utm_source: "youtube", utm_medium: "bio" };
+  var CHAVES = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "sck"];
+  var pagina = new URLSearchParams(window.location.search);
+  var temUtm = CHAVES.some(function (k) { return pagina.get(k); });
+  var links = document.querySelectorAll('a[href*="pay.cakto.com.br"]');
+  for (var i = 0; i < links.length; i++) {
+    var url;
+    try { url = new URL(links[i].getAttribute("href")); } catch (e) { continue; }
+    CHAVES.forEach(function (k) { url.searchParams.delete(k); });
+    if (temUtm) {
+      CHAVES.forEach(function (k) { var v = pagina.get(k); if (v) url.searchParams.set(k, v); });
+    } else {
+      Object.keys(PADRAO).forEach(function (k) { url.searchParams.set(k, PADRAO[k]); });
+    }
+    links[i].setAttribute("href", url.toString());
   }
 })();
 </script>
