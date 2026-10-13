@@ -602,6 +602,13 @@ var CHECKOUT_ES = "https://pay.hotmart.com/O107998286L?checkoutMode=10";
     } else {
       Object.keys(PADRAO).forEach(function (k) { url.searchParams.set(k, PADRAO[k]); });
     }
+    /* A Hotmart mostra a origem da venda pelo src: junta fonte, meio e campanha (ex.: youtube_comentario_40dias-es). */
+    if (url.hostname.indexOf("hotmart.com") !== -1) {
+      var src = pagina.get("src") || ["utm_source", "utm_medium", "utm_campaign"]
+        .map(function (k) { return url.searchParams.get(k); }).filter(Boolean).join("_");
+      src = src.replace(/[^A-Za-z0-9_-]/g, "").slice(0, 100);
+      if (src) url.searchParams.set("src", src);
+    }
     links[i].setAttribute("href", url.toString());
   }
 })();
